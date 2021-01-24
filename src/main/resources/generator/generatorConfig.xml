@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
@@ -38,6 +37,8 @@
                              targetPackage="com.hanzoy.SUGWdemoProject.mapper"
                              type="XMLMAPPER"/>
 
-        <table tableName="admin" domainObjectName="Admin"/>
+        <table tableName="student" domainObjectName="Student"/>
+        <table tableName="major" domainObjectName="Major"/>
+        <table tableName="will" domainObjectName="Will"/>
     </context>
 </generatorConfiguration>

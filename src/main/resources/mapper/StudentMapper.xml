@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanzoy.SUGWdemoProject.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.hanzoy.SUGWdemoProject.domain.Student">
+    <id column="stuId" jdbcType="VARCHAR" property="stuid" />
+    <result column="stdName" jdbcType="VARCHAR" property="stdname" />
+    <result column="major" jdbcType="INTEGER" property="major" />
+    <result column="classNum" jdbcType="VARCHAR" property="classnum" />
+    <result column="stdQQ" jdbcType="VARCHAR" property="stdqq" />
+    <result column="stdPhone" jdbcType="VARCHAR" property="stdphone" />
+    <result column="firstWill" jdbcType="INTEGER" property="firstwill" />
+    <result column="secondWill" jdbcType="INTEGER" property="secondwill" />
+    <result column="isDispensing" jdbcType="BIT" property="isdispensing" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hanzoy.SUGWdemoProject.domain.Student">
+    <result column="firstReason" jdbcType="LONGVARCHAR" property="firstreason" />
+    <result column="secondReason" jdbcType="LONGVARCHAR" property="secondreason" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    stuId, stdName, major, classNum, stdQQ, stdPhone, firstWill, secondWill, isDispensing
+  </sql>
+  <sql id="Blob_Column_List">
+    firstReason, secondReason
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.hanzoy.SUGWdemoProject.domain.StudentExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.hanzoy.SUGWdemoProject.domain.StudentExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from student
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from student
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hanzoy.SUGWdemoProject.domain.StudentExample">
+    delete from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
+    insert into student (stuId, stdName, major, 
+      classNum, stdQQ, stdPhone, 
+      firstWill, secondWill, isDispensing, 
+      firstReason, secondReason)
+    values (#{stuid,jdbcType=VARCHAR}, #{stdname,jdbcType=VARCHAR}, #{major,jdbcType=INTEGER}, 
+      #{classnum,jdbcType=VARCHAR}, #{stdqq,jdbcType=VARCHAR}, #{stdphone,jdbcType=VARCHAR}, 
+      #{firstwill,jdbcType=INTEGER}, #{secondwill,jdbcType=INTEGER}, #{isdispensing,jdbcType=BIT}, 
+      #{firstreason,jdbcType=LONGVARCHAR}, #{secondreason,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stuid != null">
+        stuId,
+      </if>
+      <if test="stdname != null">
+        stdName,
+      </if>
+      <if test="major != null">
+        major,
+      </if>
+      <if test="classnum != null">
+        classNum,
+      </if>
+      <if test="stdqq != null">
+        stdQQ,
+      </if>
+      <if test="stdphone != null">
+        stdPhone,
+      </if>
+      <if test="firstwill != null">
+        firstWill,
+      </if>
+      <if test="secondwill != null">
+        secondWill,
+      </if>
+      <if test="isdispensing != null">
+        isDispensing,
+      </if>
+      <if test="firstreason != null">
+        firstReason,
+      </if>
+      <if test="secondreason != null">
+        secondReason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stuid != null">
+        #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="stdname != null">
+        #{stdname,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        #{major,jdbcType=INTEGER},
+      </if>
+      <if test="classnum != null">
+        #{classnum,jdbcType=VARCHAR},
+      </if>
+      <if test="stdqq != null">
+        #{stdqq,jdbcType=VARCHAR},
+      </if>
+      <if test="stdphone != null">
+        #{stdphone,jdbcType=VARCHAR},
+      </if>
+      <if test="firstwill != null">
+        #{firstwill,jdbcType=INTEGER},
+      </if>
+      <if test="secondwill != null">
+        #{secondwill,jdbcType=INTEGER},
+      </if>
+      <if test="isdispensing != null">
+        #{isdispensing,jdbcType=BIT},
+      </if>
+      <if test="firstreason != null">
+        #{firstreason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="secondreason != null">
+        #{secondreason,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hanzoy.SUGWdemoProject.domain.StudentExample" resultType="java.lang.Long">
+    select count(*) from student
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update student
+    <set>
+      <if test="record.stuid != null">
+        stuId = #{record.stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stdname != null">
+        stdName = #{record.stdname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.major != null">
+        major = #{record.major,jdbcType=INTEGER},
+      </if>
+      <if test="record.classnum != null">
+        classNum = #{record.classnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stdqq != null">
+        stdQQ = #{record.stdqq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stdphone != null">
+        stdPhone = #{record.stdphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstwill != null">
+        firstWill = #{record.firstwill,jdbcType=INTEGER},
+      </if>
+      <if test="record.secondwill != null">
+        secondWill = #{record.secondwill,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdispensing != null">
+        isDispensing = #{record.isdispensing,jdbcType=BIT},
+      </if>
+      <if test="record.firstreason != null">
+        firstReason = #{record.firstreason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.secondreason != null">
+        secondReason = #{record.secondreason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update student
+    set stuId = #{record.stuid,jdbcType=VARCHAR},
+      stdName = #{record.stdname,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=INTEGER},
+      classNum = #{record.classnum,jdbcType=VARCHAR},
+      stdQQ = #{record.stdqq,jdbcType=VARCHAR},
+      stdPhone = #{record.stdphone,jdbcType=VARCHAR},
+      firstWill = #{record.firstwill,jdbcType=INTEGER},
+      secondWill = #{record.secondwill,jdbcType=INTEGER},
+      isDispensing = #{record.isdispensing,jdbcType=BIT},
+      firstReason = #{record.firstreason,jdbcType=LONGVARCHAR},
+      secondReason = #{record.secondreason,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update student
+    set stuId = #{record.stuid,jdbcType=VARCHAR},
+      stdName = #{record.stdname,jdbcType=VARCHAR},
+      major = #{record.major,jdbcType=INTEGER},
+      classNum = #{record.classnum,jdbcType=VARCHAR},
+      stdQQ = #{record.stdqq,jdbcType=VARCHAR},
+      stdPhone = #{record.stdphone,jdbcType=VARCHAR},
+      firstWill = #{record.firstwill,jdbcType=INTEGER},
+      secondWill = #{record.secondwill,jdbcType=INTEGER},
+      isDispensing = #{record.isdispensing,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
+    update student
+    <set>
+      <if test="stdname != null">
+        stdName = #{stdname,jdbcType=VARCHAR},
+      </if>
+      <if test="major != null">
+        major = #{major,jdbcType=INTEGER},
+      </if>
+      <if test="classnum != null">
+        classNum = #{classnum,jdbcType=VARCHAR},
+      </if>
+      <if test="stdqq != null">
+        stdQQ = #{stdqq,jdbcType=VARCHAR},
+      </if>
+      <if test="stdphone != null">
+        stdPhone = #{stdphone,jdbcType=VARCHAR},
+      </if>
+      <if test="firstwill != null">
+        firstWill = #{firstwill,jdbcType=INTEGER},
+      </if>
+      <if test="secondwill != null">
+        secondWill = #{secondwill,jdbcType=INTEGER},
+      </if>
+      <if test="isdispensing != null">
+        isDispensing = #{isdispensing,jdbcType=BIT},
+      </if>
+      <if test="firstreason != null">
+        firstReason = #{firstreason,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="secondreason != null">
+        secondReason = #{secondreason,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
+    update student
+    set stdName = #{stdname,jdbcType=VARCHAR},
+      major = #{major,jdbcType=INTEGER},
+      classNum = #{classnum,jdbcType=VARCHAR},
+      stdQQ = #{stdqq,jdbcType=VARCHAR},
+      stdPhone = #{stdphone,jdbcType=VARCHAR},
+      firstWill = #{firstwill,jdbcType=INTEGER},
+      secondWill = #{secondwill,jdbcType=INTEGER},
+      isDispensing = #{isdispensing,jdbcType=BIT},
+      firstReason = #{firstreason,jdbcType=LONGVARCHAR},
+      secondReason = #{secondreason,jdbcType=LONGVARCHAR}
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
+    update student
+    set stdName = #{stdname,jdbcType=VARCHAR},
+      major = #{major,jdbcType=INTEGER},
+      classNum = #{classnum,jdbcType=VARCHAR},
+      stdQQ = #{stdqq,jdbcType=VARCHAR},
+      stdPhone = #{stdphone,jdbcType=VARCHAR},
+      firstWill = #{firstwill,jdbcType=INTEGER},
+      secondWill = #{secondwill,jdbcType=INTEGER},
+      isDispensing = #{isdispensing,jdbcType=BIT}
+    where stuId = #{stuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
