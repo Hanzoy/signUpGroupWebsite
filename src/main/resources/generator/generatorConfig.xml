@@ -40,5 +40,6 @@
         <table tableName="student" domainObjectName="Student"/>
         <table tableName="major" domainObjectName="Major"/>
         <table tableName="will" domainObjectName="Will"/>
+        <table tableName="user" domainObjectName="User"/>
     </context>
 </generatorConfiguration>

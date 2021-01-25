@@ -3,6 +3,7 @@
 <mapper namespace="com.hanzoy.SUGWdemoProject.mapper.StudentMapper">
   <resultMap id="BaseResultMap" type="com.hanzoy.SUGWdemoProject.domain.Student">
     <id column="stuId" jdbcType="VARCHAR" property="stuid" />
+    <id column="code" jdbcType="INTEGER" property="code" />
     <result column="stdName" jdbcType="VARCHAR" property="stdname" />
     <result column="major" jdbcType="INTEGER" property="major" />
     <result column="classNum" jdbcType="VARCHAR" property="classnum" />
@@ -75,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    stuId, stdName, major, classNum, stdQQ, stdPhone, firstWill, secondWill, isDispensing
+    stuId, code, stdName, major, classNum, stdQQ, stdPhone, firstWill, secondWill, isDispensing
   </sql>
   <sql id="Blob_Column_List">
     firstReason, secondReason
@@ -110,17 +111,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="map" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
     from student
     where stuId = #{stuid,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="map">
     delete from student
     where stuId = #{stuid,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.hanzoy.SUGWdemoProject.domain.StudentExample">
     delete from student
@@ -129,20 +132,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
-    insert into student (stuId, stdName, major, 
-      classNum, stdQQ, stdPhone, 
-      firstWill, secondWill, isDispensing, 
-      firstReason, secondReason)
-    values (#{stuid,jdbcType=VARCHAR}, #{stdname,jdbcType=VARCHAR}, #{major,jdbcType=INTEGER}, 
-      #{classnum,jdbcType=VARCHAR}, #{stdqq,jdbcType=VARCHAR}, #{stdphone,jdbcType=VARCHAR}, 
-      #{firstwill,jdbcType=INTEGER}, #{secondwill,jdbcType=INTEGER}, #{isdispensing,jdbcType=BIT}, 
-      #{firstreason,jdbcType=LONGVARCHAR}, #{secondreason,jdbcType=LONGVARCHAR})
+    insert into student (stuId, code, stdName, 
+      major, classNum, stdQQ, 
+      stdPhone, firstWill, secondWill, 
+      isDispensing, firstReason, secondReason
+      )
+    values (#{stuid,jdbcType=VARCHAR}, #{code,jdbcType=INTEGER}, #{stdname,jdbcType=VARCHAR}, 
+      #{major,jdbcType=INTEGER}, #{classnum,jdbcType=VARCHAR}, #{stdqq,jdbcType=VARCHAR}, 
+      #{stdphone,jdbcType=VARCHAR}, #{firstwill,jdbcType=INTEGER}, #{secondwill,jdbcType=INTEGER}, 
+      #{isdispensing,jdbcType=BIT}, #{firstreason,jdbcType=LONGVARCHAR}, #{secondreason,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
     insert into student
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="stuid != null">
         stuId,
+      </if>
+      <if test="code != null">
+        code,
       </if>
       <if test="stdname != null">
         stdName,
@@ -178,6 +186,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="stuid != null">
         #{stuid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=INTEGER},
       </if>
       <if test="stdname != null">
         #{stdname,jdbcType=VARCHAR},
@@ -223,6 +234,9 @@
       <if test="record.stuid != null">
         stuId = #{record.stuid,jdbcType=VARCHAR},
       </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=INTEGER},
+      </if>
       <if test="record.stdname != null">
         stdName = #{record.stdname,jdbcType=VARCHAR},
       </if>
@@ -261,6 +275,7 @@
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update student
     set stuId = #{record.stuid,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=INTEGER},
       stdName = #{record.stdname,jdbcType=VARCHAR},
       major = #{record.major,jdbcType=INTEGER},
       classNum = #{record.classnum,jdbcType=VARCHAR},
@@ -278,6 +293,7 @@
   <update id="updateByExample" parameterType="map">
     update student
     set stuId = #{record.stuid,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=INTEGER},
       stdName = #{record.stdname,jdbcType=VARCHAR},
       major = #{record.major,jdbcType=INTEGER},
       classNum = #{record.classnum,jdbcType=VARCHAR},
@@ -325,6 +341,7 @@
       </if>
     </set>
     where stuId = #{stuid,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
     update student
@@ -339,6 +356,7 @@
       firstReason = #{firstreason,jdbcType=LONGVARCHAR},
       secondReason = #{secondreason,jdbcType=LONGVARCHAR}
     where stuId = #{stuid,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hanzoy.SUGWdemoProject.domain.Student">
     update student
@@ -351,5 +369,6 @@
       secondWill = #{secondwill,jdbcType=INTEGER},
       isDispensing = #{isdispensing,jdbcType=BIT}
     where stuId = #{stuid,jdbcType=VARCHAR}
+      and code = #{code,jdbcType=INTEGER}
   </update>
 </mapper>

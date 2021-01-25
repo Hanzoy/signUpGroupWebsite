@@ -3,6 +3,8 @@ package com.hanzoy.SUGWdemoProject.domain;
 public class Student {
     private String stuid;
 
+    private Integer code;
+
     private String stdname;
 
     private Integer major;
@@ -29,6 +31,14 @@ public class Student {
 
     public void setStuid(String stuid) {
         this.stuid = stuid;
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
     }
 
     public String getStdname() {
@@ -118,6 +128,7 @@ public class Student {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", stuid=").append(stuid);
+        sb.append(", code=").append(code);
         sb.append(", stdname=").append(stdname);
         sb.append(", major=").append(major);
         sb.append(", classnum=").append(classnum);
