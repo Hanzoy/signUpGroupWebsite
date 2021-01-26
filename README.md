@@ -25,23 +25,23 @@
 
 ```json
 {
-  stdId: String, 			//学号	必填		重复学号会覆盖之前的信息
-  stdName: String, 			//姓名	必填
-  major: String, 			//专业	必填	
-  classNum: String, 		//班级	必填
-  stdQQ: String, 			//学生qq	必填
-  stdPhone: String 			//学生手机号 必填
-  firstWill: { 				//第一志愿 必填
-      organization: String, //组织名 必填
-      branch: String, 		//下属部门 必填
-      reason: String, 		//加入该组织的原因
-  }
-  secondWill: { 			//第二志愿
-      organization: String, //组织名 
-      branch: String, 		//下属部门
-      reason: String, 		//加入该组织的原因
-  }
-  isDispensing: Boolean 	//是否调剂 不填默认为true
+  "stdId": "String", 			    //学号	必填		重复学号会覆盖之前的信息
+  "stdName": "String", 			    //姓名	必填
+  "major": "String", 			    //专业	必填	
+  "classNum": "String", 		    //班级	必填
+  "stdQQ": "String", 			    //学生qq	必填
+  "stdPhone": "String",             //学生手机号 必填
+  "firstWill": {                    //第一志愿 必填
+      "organization": "String",     //组织名 必填
+      "branch": "String", 		    //下属部门 必填
+      "reason": "String" 		    //加入该组织的原因
+  },
+  "secondWill": { 			        //第二志愿
+      "organization": "String",     //组织名 
+      "branch": "String", 		    //下属部门
+      "reason": "String", 		    //加入该组织的原因
+  },    
+  "isDispensing": "Boolean" 	    //是否调剂 不填默认为true
 }
 ```
 
@@ -49,8 +49,8 @@
 
 ```json
 {
-    code: String,
-    message: String
+    "code": "String",
+    "message": "String"
 }
 ```
 
@@ -92,8 +92,8 @@
 
 ```json
 {
-	username: String,
-	password: String
+	"username": "String",
+	"password": "String"
 }
 ```
 
@@ -101,11 +101,11 @@
 
 ```json
 {
-    code: String,		//必有
-    message: String,	//必有
-    data: {				//必有
-    	token: String	//如果code不为0000，则返回 "" 。
-	}
+    "code": "String",		          //必有
+    "message": "String",	          //必有
+    "data": {				          //必有
+    	"token": "String"	          //如果code不为0000，则返回 "" 。
+	}         
     
 }
 ```
@@ -120,7 +120,7 @@
 
 ```json
 {
-	token: String
+	"token": "String"
 }
 ```
 
@@ -128,11 +128,11 @@
 
 ```json
 {
-    code: String,		//必有
-    message: String,	//必有
-    data: {
-        name: String,
-        role: String	//(admin || superAdmin)
+    "code": "String",		          //必有
+    "message": "String",	          //必有
+    "data": {         
+        "name": "String",         
+        "role": "String"	          //(admin || superAdmin)
     }
 }
 ```
@@ -149,7 +149,7 @@
 
 ```json
 {
-    token: String
+    "token": "String"
     
     //page: Number		//不传默认为1
     //pageSize: Number
@@ -158,47 +158,47 @@
 
 ```json
 {
-	code: String,
-	message: String,
-	data: {
-		total: Number,					//总共有多少页，从1开始
-		students: [{
-            stdId: String, 				//学号	必填		重复学号会覆盖之前的信息
-          	stdName: String, 			//姓名	必填
-          	major: String, 				//专业	必填	
-          	classNum: String, 			//班级	必填
-          	stdQQ: String, 				//学生qq	必填
-         	stdPhone: String 			//学生手机号 必填
-          	firstWill: { 				//第一志愿 必填
-              	organization: String, 	//组织名 必填
-              	branch: String, 		//下属部门 必填
-              	reason: String, 		//加入该组织的原因
-          	}
-          	secondWill: { 				//第二志愿
-              	organization: String, 	//组织名 
-              	branch: String, 		//下属部门
-              	reason: String, 		//加入该组织的原因
-          	}
-          	isDispensing: Boolean 		//是否调剂 不填默认为true
+	"code": "String",
+	"message": "String",
+	"data": {
+		"total": "Number",					//总共有多少页，从1开始
+		"students": [{
+            "stdId": "String", 				//学号	必填		重复学号会覆盖之前的信息
+          	"stdName": "String", 			//姓名	必填
+          	"major": "String", 				//专业	必填	
+          	"classNum": "String", 			//班级	必填
+          	"stdQQ": "String", 				//学生qq	必填
+         	"stdPhone": "String",			//学生手机号 必填
+          	"firstWill": { 				    //第一志愿 必填
+              	"organization": "String", 	//组织名 必填
+              	"branch": "String", 		//下属部门 必填
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"secondWill": { 				//第二志愿
+              	"organization": "String", 	//组织名 
+              	"branch": "String", 		//下属部门
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"isDispensing": "Boolean" 		//是否调剂 不填默认为true
         },{
-            stdId: String, 				//学号	必填		重复学号会覆盖之前的信息
-          	stdName: String, 			//姓名	必填
-          	major: String, 				//专业	必填	
-          	classNum: String, 			//班级	必填
-          	stdQQ: String, 				//学生qq	必填
-         	stdPhone: String 			//学生手机号 必填
-          	firstWill: { 				//第一志愿 必填
-              	organization: String, 	//组织名 必填
-              	branch: String, 		//下属部门 必填
-              	reason: String, 		//加入该组织的原因
-          	}
-          	secondWill: { 				//第二志愿
-              	organization: String, 	//组织名 
-              	branch: String, 		//下属部门
-              	reason: String, 		//加入该组织的原因
-          	}
-          	isDispensing: Boolean 		//是否调剂 不填默认为true
-        }...]
+            "stdId": "String", 				//学号	必填		重复学号会覆盖之前的信息
+          	"stdName": "String", 			//姓名	必填
+          	"major": "String", 				//专业	必填	
+          	"classNum": "String", 			//班级	必填
+          	"stdQQ": "String", 				//学生qq	必填
+         	"stdPhone": "String", 			//学生手机号 必填
+          	"firstWill": { 				    //第一志愿 必填
+              	"organization": "String", 	//组织名 必填
+              	"branch": "String", 		//下属部门 必填
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"secondWill": { 				//第二志愿
+              	"organization": "String", 	//组织名 
+              	"branch": "String", 		//下属部门
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"isDispensing": "Boolean" 		//是否调剂 不填默认为true
+        }]
     }
 }
 ```
@@ -211,54 +211,54 @@
 
 ```json
 {
-    token: String,
-    keyWord: Strign
+    "token": "String",
+    "keyWord": "Strign"
 }
 ```
 
 ```json
 {
-	code: String,
-	message: String,
-	data: {
-		total: Number,					//总共有多少页，从1开始
-		students: [{
-            stdId: String, 				//学号	必填		重复学号会覆盖之前的信息
-          	stdName: String, 			//姓名	必填
-          	major: String, 				//专业	必填	
-          	classNum: String, 			//班级	必填
-          	stdQQ: String, 				//学生qq	必填
-         	stdPhone: String 			//学生手机号 必填
-          	firstWill: { 				//第一志愿 必填
-              	organization: String, 	//组织名 必填
-              	branch: String, 		//下属部门 必填
-              	reason: String, 		//加入该组织的原因
-          	}
-          	secondWill: { 				//第二志愿
-              	organization: String, 	//组织名 
-              	branch: String, 		//下属部门
-              	reason: String, 		//加入该组织的原因
-          	}
-          	isDispensing: Boolean 		//是否调剂 不填默认为true
+	"code": "String",
+	"message": "String",
+	"data": {
+		"total": "Number",					//总共有多少页，从1开始
+		"students": [{
+            "stdId": "String", 				//学号	必填		重复学号会覆盖之前的信息
+          	"stdName": "String", 			//姓名	必填
+          	"major": "String", 				//专业	必填	
+          	"classNum": "String", 			//班级	必填
+          	"stdQQ": "String", 				//学生qq	必填
+         	"stdPhone": "String", 			//学生手机号 必填
+          	"firstWill": { 				    //第一志愿 必填
+              	"organization": "String", 	//组织名 必填
+              	"branch": "String", 		//下属部门 必填
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"secondWill": { 				//第二志愿
+              	"organization": "String", 	//组织名 
+              	"branch": "String", 		//下属部门
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"isDispensing": "Boolean" 		//是否调剂 不填默认为true
         },{
-            stdId: String, 				//学号	必填		重复学号会覆盖之前的信息
-          	stdName: String, 			//姓名	必填
-          	major: String, 				//专业	必填	
-          	classNum: String, 			//班级	必填
-          	stdQQ: String, 				//学生qq	必填
-         	stdPhone: String 			//学生手机号 必填
-          	firstWill: { 				//第一志愿 必填
-              	organization: String, 	//组织名 必填
-              	branch: String, 		//下属部门 必填
-              	reason: String, 		//加入该组织的原因
-          	}
-          	secondWill: { 				//第二志愿
-              	organization: String, 	//组织名 
-              	branch: String, 		//下属部门
-              	reason: String, 		//加入该组织的原因
-          	}
-          	isDispensing: Boolean 		//是否调剂 不填默认为true
-        }...]
+            "stdId": "String", 				//学号	必填		重复学号会覆盖之前的信息
+          	"stdName": "String", 			//姓名	必填
+          	"major": "String", 				//专业	必填	
+          	"classNum": "String", 			//班级	必填
+          	"stdQQ": "String", 				//学生qq	必填
+         	"stdPhone": "String" 			//学生手机号 必填
+          	"firstWill": { 				    //第一志愿 必填
+              	"organization": "String", 	//组织名 必填
+              	"branch": "String", 		//下属部门 必填
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"secondWill": { 				//第二志愿
+              	"organization": "String", 	//组织名 
+              	"branch": "String", 		//下属部门
+              	"reason": "String", 		//加入该组织的原因
+          	},
+          	"isDispensing": "Boolean" 		//是否调剂 不填默认为true
+        }]
     }
 }
 ```
