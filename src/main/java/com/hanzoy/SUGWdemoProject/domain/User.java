@@ -1,12 +1,16 @@
 package com.hanzoy.SUGWdemoProject.domain;
 
+import com.hanzoy.utils.Token;
+
 public class User {
     private Integer id;
 
+    @Token
     private String username;
 
     private String password;
 
+    @Token
     private Boolean role;
 
     public Integer getId() {

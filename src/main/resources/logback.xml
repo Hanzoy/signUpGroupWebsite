@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
-    <property name="PATH" value="/code/log/SUGW"></property>
+<!--    <property name="PATH" value="/code/log/SUGW"></property>-->
+        <property name="PATH" value="/home/log/SUGW"></property>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

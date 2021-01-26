@@ -36,4 +36,12 @@ public class CommonResult<T> {
     public static <T> CommonResult<T> validateFailed(String message){
         return new CommonResult<>(ResultEnum.VALIDATEFAILED.getCode(), message);
     }
+
+    public static <T> CommonResult<T> accountPasswordError(String message){
+        return new CommonResult<>(ResultEnum.PASSWORDERROR.getCode(), message);
+    }
+
+    public static <T> CommonResult<T> tokenError(String message){
+        return new CommonResult<>(ResultEnum.TOKENERROR.getCode(), message);
+    }
 }

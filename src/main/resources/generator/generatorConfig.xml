@@ -42,4 +42,5 @@
         <table tableName="will" domainObjectName="Will"/>
         <table tableName="user" domainObjectName="User"/>
     </context>
+
 </generatorConfiguration>

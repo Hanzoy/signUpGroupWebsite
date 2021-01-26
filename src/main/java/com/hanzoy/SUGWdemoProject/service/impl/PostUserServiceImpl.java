@@ -57,9 +57,9 @@ public class PostUserServiceImpl implements PostUserService {
                 throw new FieldDoesNotExistException("secondWill不存在");
             }
             student.setSecondwill(wills.get(0).getWillid());
+            student.setSecondreason(param.getSecondWill().getReason());
         }
         student.setFirstreason(param.getFirstWill().getReason());
-        student.setSecondreason(param.getSecondWill().getReason());
         student.setIsdispensing(param.getIsDispensing());
         if(studentMapper.selectByPrimaryKey(student.getStuid(), student.getCode()) != null){
             studentMapper.updateByPrimaryKeyWithBLOBs(student);

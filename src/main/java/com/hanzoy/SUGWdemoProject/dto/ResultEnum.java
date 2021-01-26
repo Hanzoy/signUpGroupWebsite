@@ -1,7 +1,7 @@
 package com.hanzoy.SUGWdemoProject.dto;
 
 public enum ResultEnum {
-    SUCCESS("0000", "一切正常"),
+    SUCCESS("0000", "请求成功"),
     FAILED("1002", "操作失败"),
     PASSWORDERROR("1000", "用户密码错误"),
     ERROR("2000", "用户操作异常"),
